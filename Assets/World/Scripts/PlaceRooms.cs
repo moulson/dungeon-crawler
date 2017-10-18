@@ -89,4 +89,12 @@ public class PlaceRooms : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	}
+
+    void ParseJson(){
+
+    }
+
+    void DetailRooms(){
+        
+    }
 }
