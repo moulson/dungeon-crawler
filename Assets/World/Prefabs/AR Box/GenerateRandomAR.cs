@@ -8,6 +8,7 @@ public class GenerateRandomAR : MonoBehaviour {
 	public AudioClip leverPullClip;
 	public GameObject uiPrompt;
 	public GameObject[] spawnLocations;
+	public GameObject baseWeapon;
 
 	public List<GameObject> stockList;
 	public List<GameObject> gripList;
@@ -63,13 +64,17 @@ public class GenerateRandomAR : MonoBehaviour {
 		//Play the sound of rolling the machine.
 		AudioSource.PlayClipAtPoint(leverPullClip, this.transform.position);
 		SpawnParts();
+		//Combine parts (visual)
+
+		//Create a weapon out of the parts
+		CreateWeapon( spawnedStock, spawnedGrip, spawnedFireMode, spawnedFuelCell, spawnedUnderBarrel, spawnedBarrel, spawnedOptic, spawnedAmmoType);
 
 		//Set the state to make sure machine won't be used again
 		weaponSpawned = true;
 	}
 
 
-	
+
 	int RandomNumber(int min, int max){
 		System.Random randInt = new System.Random();
 		try{
@@ -113,5 +118,23 @@ public class GenerateRandomAR : MonoBehaviour {
 		//Spawn the Ammo Type
 		spawnedAmmoType = Instantiate(ammoList[RandomNumber(0, ammoList.ToArray().Length)], spawnLocations[7].transform);
 		spawnedAmmoType.transform.position = spawnLocations[7].transform.position;
+	}
+	void CreateWeapon(GameObject stock, GameObject grip, GameObject fireMode, GameObject fuelCell, GameObject underBarrel, GameObject barrel, GameObject optic, GameObject ammoType){
+		stock = Instantiate(stock, baseWeapon.transform);
+		grip = Instantiate(grip, baseWeapon.transform);
+		fireMode = Instantiate(fireMode, baseWeapon.transform);
+		fuelCell = Instantiate(fuelCell, baseWeapon.transform);
+		underBarrel = Instantiate(underBarrel, baseWeapon.transform);
+		barrel = Instantiate(barrel, baseWeapon.transform);
+		optic = Instantiate(optic, baseWeapon.transform);
+		//Don't instantiate the ammo type, Don't need a visual for it. yet.
+		stock.transform.position = new Vector3(stock.transform.position.x, stock.transform.position.y, stock.transform.position.z - 0.3f);
+		grip.transform.position = new Vector3(grip.transform.position.x, grip.transform.position.y - 0.24f, grip.transform.position.z);
+		fireMode.transform.position = new Vector3(fireMode.transform.position.x, fireMode.transform.position.y - 0.1f, fireMode.transform.position.z -0.2f);
+		fuelCell.transform.position = new Vector3(fuelCell.transform.position.x, fuelCell.transform.position.y - 0.17f, fuelCell.transform.position.z - 0.2f);
+		underBarrel.transform.position = new Vector3(underBarrel.transform.position.x, underBarrel.transform.position.y - 0.2f, underBarrel.transform.position.z + 0.5f);
+		//This is the main part of the gun, fit things around the barrel
+		barrel.transform.position = new Vector3(grip.transform.position.x, grip.transform.position.y, grip.transform.position.z);
+		optic.transform.position = new Vector3(optic.transform.position.x, optic.transform.position.y + 0.2f, optic.transform.position.z);
 	}
 }
