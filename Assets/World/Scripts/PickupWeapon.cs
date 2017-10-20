@@ -8,6 +8,7 @@ public class PickupWeapon : MonoBehaviour {
 	
 	private bool hasBeenUsed = false;
 	private bool canBePicked = false;
+	private bool hasBeenPicked = false;
 	private bool needsInstantiating = true;
 	public GameObject assaultRifleSlot;
 	
@@ -24,7 +25,7 @@ public class PickupWeapon : MonoBehaviour {
 	void OnTriggerExit(){
 		canBePicked = false;
 		//Disable ui prompt
-		if(!needsInstantiating)
+		if(!needsInstantiating && !hasBeenPicked)
 			uiPrompt.SetActive(false);
 	}
 
@@ -41,5 +42,7 @@ public class PickupWeapon : MonoBehaviour {
 		this.transform.parent = assaultRifleSlot.transform;
 		this.transform.position = assaultRifleSlot.transform.position;
 		this.transform.rotation = assaultRifleSlot.transform.rotation;
+		hasBeenPicked = true;
+		Destroy(uiPrompt);
 	}
 }
