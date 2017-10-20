@@ -56,7 +56,7 @@ public class GenerateRandomAR : MonoBehaviour {
 			SpawnWeapon();
 			isShowing = false;
 			//Clean up this mess afterwards
-			Destroy(uiPrompt,0.5f);
+			Destroy(uiPrompt);
 			hasDestroyedUI = true;
 		}
 	}
@@ -128,13 +128,13 @@ public class GenerateRandomAR : MonoBehaviour {
 		barrel = Instantiate(barrel, baseWeapon.transform);
 		optic = Instantiate(optic, baseWeapon.transform);
 		//Don't instantiate the ammo type, Don't need a visual for it. yet.
-		stock.transform.position = new Vector3(stock.transform.position.x, stock.transform.position.y, stock.transform.position.z - 0.3f);
-		grip.transform.position = new Vector3(grip.transform.position.x, grip.transform.position.y - 0.24f, grip.transform.position.z);
+		stock.transform.position = new Vector3(stock.transform.position.x, stock.transform.position.y - 0.01f, stock.transform.position.z - 0.3f);
+		grip.transform.position = new Vector3(grip.transform.position.x, grip.transform.position.y - 0.15f, grip.transform.position.z);
 		fireMode.transform.position = new Vector3(fireMode.transform.position.x, fireMode.transform.position.y - 0.1f, fireMode.transform.position.z -0.2f);
 		fuelCell.transform.position = new Vector3(fuelCell.transform.position.x, fuelCell.transform.position.y - 0.17f, fuelCell.transform.position.z - 0.2f);
-		underBarrel.transform.position = new Vector3(underBarrel.transform.position.x, underBarrel.transform.position.y - 0.2f, underBarrel.transform.position.z + 0.5f);
+		underBarrel.transform.position = new Vector3(underBarrel.transform.position.x, underBarrel.transform.position.y - 0.14f, underBarrel.transform.position.z + 0.3f);
 		//This is the main part of the gun, fit things around the barrel
-		barrel.transform.position = new Vector3(grip.transform.position.x, grip.transform.position.y, grip.transform.position.z);
-		optic.transform.position = new Vector3(optic.transform.position.x, optic.transform.position.y + 0.2f, optic.transform.position.z);
+		barrel.transform.position = new Vector3(barrel.transform.position.x, barrel.transform.position.y, barrel.transform.position.z);
+		optic.transform.position = new Vector3(optic.transform.position.x, optic.transform.position.y + 0.07f, optic.transform.position.z);
 	}
 }
