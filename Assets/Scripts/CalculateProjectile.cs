@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CalculateProjectile : MonoBehaviour {
+	public int bulletVelocity;
 	public bool isAutomatic;
 	//TODO: change this to private and automatically use current weapon's ammo type
 	public GameObject theProjectile;
@@ -40,7 +41,7 @@ public class CalculateProjectile : MonoBehaviour {
 		theBullet = Instantiate(theProjectile, shootingPoint);
 		theBullet.transform.position = shootingPoint.position;
 		theBullet.transform.parent = null;
-		theBullet.GetComponent<Rigidbody>().AddRelativeForce(new Vector3(-1500, 0, 0));
+		theBullet.GetComponent<Rigidbody>().AddRelativeForce(new Vector3(-bulletVelocity, 0, 0));
 	}
 
 	void FindShootingPoint(){
