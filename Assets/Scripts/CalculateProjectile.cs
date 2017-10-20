@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CalculateProjectile : MonoBehaviour {
 	public int bulletVelocity;
+	public AudioClip bulletSound;
 	public bool isAutomatic;
 	//TODO: change this to private and automatically use current weapon's ammo type
 	public GameObject theProjectile;
@@ -42,6 +43,8 @@ public class CalculateProjectile : MonoBehaviour {
 		theBullet.transform.position = shootingPoint.position;
 		theBullet.transform.parent = null;
 		theBullet.GetComponent<Rigidbody>().AddRelativeForce(new Vector3(-bulletVelocity, 0, 0));
+		//Play firing noise
+		AudioSource.PlayClipAtPoint(bulletSound, this.transform.position);
 	}
 
 	void FindShootingPoint(){
