@@ -131,12 +131,12 @@ public class GenerateRandomAR : MonoBehaviour {
 		string ammoType = ammo.name.Replace("(Clone)", "");
 		//Don't instantiate the ammo type, Don't need a visual for it. yet.
 		stock.transform.position = new Vector3(stock.transform.position.x, stock.transform.position.y - 0.01f, stock.transform.position.z - 0.3f);
-		grip.transform.position = new Vector3(grip.transform.position.x, grip.transform.position.y - 0.15f, grip.transform.position.z);
+		grip.transform.position = new Vector3(grip.transform.position.x, grip.transform.position.y - 0.1f, grip.transform.position.z + 0.1f);
 		fireMode.transform.position = new Vector3(fireMode.transform.position.x, fireMode.transform.position.y - 0.1f, fireMode.transform.position.z -0.2f);
 		fuelCell.transform.position = new Vector3(fuelCell.transform.position.x, fuelCell.transform.position.y - 0.17f, fuelCell.transform.position.z - 0.2f);
 		underBarrel.transform.position = new Vector3(underBarrel.transform.position.x, underBarrel.transform.position.y - 0.14f, underBarrel.transform.position.z + 0.3f);
 		//This is the main part of the gun, fit things around the barrel
-		barrel.transform.position = new Vector3(barrel.transform.position.x, barrel.transform.position.y, barrel.transform.position.z);
+		barrel.transform.position = new Vector3(barrel.transform.position.x - 0.05f, barrel.transform.position.y, barrel.transform.position.z + 0.7f);
 		optic.transform.position = new Vector3(optic.transform.position.x, optic.transform.position.y + 0.07f, optic.transform.position.z);
 
 		baseWeapon.SendMessage("SetAmmoType", ammoType);
