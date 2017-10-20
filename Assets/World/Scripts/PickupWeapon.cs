@@ -11,8 +11,10 @@ public class PickupWeapon : MonoBehaviour {
 	private bool hasBeenPicked = false;
 	private bool needsInstantiating = true;
 	public GameObject assaultRifleSlot;
-	
-	void OnTriggerEnter(){
+
+    public static string AmmoType;
+
+    void OnTriggerEnter(){
 		//Make sure that the weapon box has been used first
 		if(this.transform.childCount > 0){
 			if(needsInstantiating)
@@ -44,5 +46,9 @@ public class PickupWeapon : MonoBehaviour {
 		this.transform.rotation = assaultRifleSlot.transform.rotation;
 		hasBeenPicked = true;
 		Destroy(uiPrompt);
+	}
+
+	void SetAmmoType(string theammo){
+		AmmoType =  theammo;
 	}
 }

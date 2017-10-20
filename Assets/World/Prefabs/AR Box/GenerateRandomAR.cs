@@ -9,6 +9,7 @@ public class GenerateRandomAR : MonoBehaviour {
 	public GameObject uiPrompt;
 	public GameObject[] spawnLocations;
 	public GameObject baseWeapon;
+	public string ammoType;
 
 	public List<GameObject> stockList;
 	public List<GameObject> gripList;
@@ -119,7 +120,7 @@ public class GenerateRandomAR : MonoBehaviour {
 		spawnedAmmoType = Instantiate(ammoList[RandomNumber(0, ammoList.ToArray().Length)], spawnLocations[7].transform);
 		spawnedAmmoType.transform.position = spawnLocations[7].transform.position;
 	}
-	void CreateWeapon(GameObject stock, GameObject grip, GameObject fireMode, GameObject fuelCell, GameObject underBarrel, GameObject barrel, GameObject optic, GameObject ammoType){
+	void CreateWeapon(GameObject stock, GameObject grip, GameObject fireMode, GameObject fuelCell, GameObject underBarrel, GameObject barrel, GameObject optic, GameObject ammo){
 		stock = Instantiate(stock, baseWeapon.transform);
 		grip = Instantiate(grip, baseWeapon.transform);
 		fireMode = Instantiate(fireMode, baseWeapon.transform);
@@ -127,6 +128,7 @@ public class GenerateRandomAR : MonoBehaviour {
 		underBarrel = Instantiate(underBarrel, baseWeapon.transform);
 		barrel = Instantiate(barrel, baseWeapon.transform);
 		optic = Instantiate(optic, baseWeapon.transform);
+		string ammoType = ammo.name.Replace("(Clone)", "");
 		//Don't instantiate the ammo type, Don't need a visual for it. yet.
 		stock.transform.position = new Vector3(stock.transform.position.x, stock.transform.position.y - 0.01f, stock.transform.position.z - 0.3f);
 		grip.transform.position = new Vector3(grip.transform.position.x, grip.transform.position.y - 0.15f, grip.transform.position.z);
@@ -136,5 +138,7 @@ public class GenerateRandomAR : MonoBehaviour {
 		//This is the main part of the gun, fit things around the barrel
 		barrel.transform.position = new Vector3(barrel.transform.position.x, barrel.transform.position.y, barrel.transform.position.z);
 		optic.transform.position = new Vector3(optic.transform.position.x, optic.transform.position.y + 0.07f, optic.transform.position.z);
+
+		baseWeapon.SendMessage("SetAmmoType", ammoType);
 	}
 }

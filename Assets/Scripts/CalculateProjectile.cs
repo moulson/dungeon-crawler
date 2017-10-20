@@ -39,6 +39,17 @@ public class CalculateProjectile : MonoBehaviour {
  }
 	void FireSingle(){
 		GameObject theBullet;
+		switch(PickupWeapon.AmmoType){
+			case "ToxicAmmo":
+				Debug.Log("Toxic Shot!");
+			break;
+			case "IncindiaryAmmo":
+				Debug.Log("Incindiary Shot");
+			break;
+			case "ShockAmmo":
+				Debug.Log("Shock Shot!");
+			break;
+		}
 		theBullet = Instantiate(theProjectile, shootingPoint);
 		theBullet.transform.position = shootingPoint.position;
 		theBullet.transform.parent = null;
