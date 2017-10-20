@@ -10,10 +10,12 @@ public class DestroyBullet : MonoBehaviour {
 	// Use this for initialization
 	void OnCollisionEnter(Collision collision)
     {
+		GameObject thisShot;
         ContactPoint contact = collision.contacts[0];
         Quaternion rot = Quaternion.FromToRotation(Vector3.up, contact.normal);
         Vector3 pos = contact.point;
-		Instantiate(hitEffect, pos, rot);
+		thisShot = Instantiate(hitEffect, pos, rot);
         Destroy(gameObject);
+		Destroy(thisShot, 2.0f);
     }
 }

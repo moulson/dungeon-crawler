@@ -3,58 +3,65 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CalculateProjectile : MonoBehaviour {
+	public GameObject toxicEffect;
+	public GameObject shockEffect;
+	public GameObject incindiaryEffect;
 	public int bulletVelocity;
 	public AudioClip bulletSound;
-	public bool isAutomatic;
 	//TODO: change this to private and automatically use current weapon's ammo type
 	public GameObject theProjectile;
 	private bool autoFiring = false;
 	private bool shootingPointFound;
 	private Transform theWeapon;
 	private Transform shootingPoint;
+	private bool isCoroutining = false;
 
 	void Update () {
 		if(!shootingPointFound){
 			FindShootingPoint();
 		}
-		if(Input.GetMouseButtonDown(0)){
-			if(isAutomatic)
+		if(Input.GetButtonDown("Fire1")){
+			autoFiring = true;
+			if(!isCoroutining)
+				//TODO: Use calculated firerate as the delay modifier
 				StartCoroutine(AutoFire(0.5f));
-			else{
-				FireSingle();
-			}
 		}
-		if(Input.GetMouseButtonUp(0) && isAutomatic){
+		if(Input.GetButtonUp("Fire1")){
 			autoFiring = false;
 		}
 	}
 
 	IEnumerator AutoFire(float time)
  {
-	 do{
+	 while(autoFiring){
+		 isCoroutining = true;
 	 	FireSingle();
      	yield return new WaitForSeconds(time);
-	 }while(autoFiring);
-	 
+	 }
+	 isCoroutining = false;
  }
 	void FireSingle(){
 		GameObject theBullet;
+		GameObject theEffect;
+		theBullet = Instantiate(theProjectile, shootingPoint);
+		
+		theBullet.transform.position = shootingPoint.position;
 		switch(PickupWeapon.AmmoType){
 			case "ToxicAmmo":
-				Debug.Log("Toxic Shot!");
+				theEffect = Instantiate(toxicEffect, theBullet.transform);
+				theEffect.transform.position = theBullet.transform.position;
 			break;
 			case "IncindiaryAmmo":
-				Debug.Log("Incindiary Shot");
+				theEffect = Instantiate(incindiaryEffect, theBullet.transform);
+				theEffect.transform.position = theBullet.transform.position;
 			break;
 			case "ShockAmmo":
-				Debug.Log("Shock Shot!");
+				theEffect = Instantiate(shockEffect, theBullet.transform);
+				theEffect.transform.position = theBullet.transform.position;
 			break;
 		}
-		theBullet = Instantiate(theProjectile, shootingPoint);
-		theBullet.transform.position = shootingPoint.position;
 		theBullet.transform.parent = null;
 		theBullet.GetComponent<Rigidbody>().AddRelativeForce(new Vector3(-bulletVelocity, 0, 0));
-		//Play firing noise
 		AudioSource.PlayClipAtPoint(bulletSound, this.transform.position);
 	}
 
