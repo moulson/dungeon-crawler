@@ -26,6 +26,7 @@ public class ARStats : MonoBehaviour {
 		Attachment theAttachment;
 		for(int i = 0; i < totalChildren; i++){
 			attachment = transform.GetChild(0).GetChild(i);
+			attachment.gameObject.layer = 9;
 			theName = attachment.name.Replace("(Clone)", "");
 			//find attachment in list
 			theAttachment = ARAttachments.attachmentList.Find(x => x.Name == theName);
@@ -38,5 +39,6 @@ public class ARStats : MonoBehaviour {
 		Debug.Log("Damage: " + damageModifier.ToString());
 		Debug.Log("Spread: " + spreadModifier.ToString());
 		Debug.Log("Ammo Count: " + ammoCount.ToString());
+		CalculateAmmo.CurrentAmmo = ammoCount;
 	}
 }
