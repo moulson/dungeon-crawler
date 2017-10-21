@@ -8,7 +8,7 @@ public class CalculateAmmo : MonoBehaviour {
 	// Update is called once per frame
 	public void UpdateAmmoCount(int value){
 		CurrentAmmo += value;
-		GetComponent<UnityEngine.UI.Text>().text = CurrentAmmo.ToString();
+		GetComponent<UnityEngine.UI.Text>().text = CurrentAmmo.ToString() + " / " + ARStats.ammoCount.ToString();
 		if(CurrentAmmo == 0){
 			GetComponent<UnityEngine.UI.Text>().color = new Color(255,0,0);
 		}
