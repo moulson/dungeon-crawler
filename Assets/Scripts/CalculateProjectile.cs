@@ -63,6 +63,8 @@ public class CalculateProjectile : MonoBehaviour {
 		theBullet.transform.parent = null;
 		theBullet.GetComponent<Rigidbody>().AddRelativeForce(new Vector3(-bulletVelocity, 0, 0));
 		AudioSource.PlayClipAtPoint(bulletSound, this.transform.position);
+
+		//
 	}
 
 	void FindShootingPoint(){
