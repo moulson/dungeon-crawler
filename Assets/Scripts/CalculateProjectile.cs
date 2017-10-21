@@ -70,9 +70,6 @@ public class CalculateProjectile : MonoBehaviour {
 
 			//
 		}
-		else{
-			ammoUI.GetComponent<UnityEngine.UI.Text>().color = new Color(255,0,0);
-		}
 	}
 	float CalculateSpread(){
 		System.Random rnd = new System.Random();

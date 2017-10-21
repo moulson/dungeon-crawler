@@ -6,6 +6,7 @@ public class DestroyBullet : MonoBehaviour {
 	public GameObject hitEffect;
 	void Start(){
 		Physics.IgnoreLayerCollision(8,8,true);
+		Physics.IgnoreLayerCollision(8,9,true);
 	}
 	// Use this for initialization
 	void OnCollisionEnter(Collision collision)

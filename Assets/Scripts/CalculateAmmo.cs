@@ -9,5 +9,8 @@ public class CalculateAmmo : MonoBehaviour {
 	public void UpdateAmmoCount(int value){
 		CurrentAmmo += value;
 		GetComponent<UnityEngine.UI.Text>().text = CurrentAmmo.ToString();
+		if(CurrentAmmo == 0){
+			GetComponent<UnityEngine.UI.Text>().color = new Color(255,0,0);
+		}
 	}
 }
