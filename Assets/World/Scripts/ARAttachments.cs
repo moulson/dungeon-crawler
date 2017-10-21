@@ -25,6 +25,13 @@ public class ARAttachments : MonoBehaviour {
 			FireRateModifier = 0.0f,
 			AmmoCount = 0};
 		attachmentList.Add(stock001);
+		Attachment stock002 = new Attachment(){
+			Name = "stock002",
+			DamageModifier = 0.0f,
+			SpreadModifier = 1f,
+			FireRateModifier = 0.0f,
+			AmmoCount = 0};
+		attachmentList.Add(stock002);
 
 		//Initialize grips
 		Attachment grip001 = new Attachment(){
@@ -57,7 +64,7 @@ public class ARAttachments : MonoBehaviour {
 		Attachment underbarrel001 = new Attachment(){
 			Name = "underbarrel001",
 			DamageModifier = 0.0f,
-			SpreadModifier = 0.0f,
+			SpreadModifier = -0.4f,
 			FireRateModifier = 0.0f,
 			AmmoCount = 0};
 		attachmentList.Add(underbarrel001);
