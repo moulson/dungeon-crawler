@@ -61,12 +61,15 @@ public class CalculateProjectile : MonoBehaviour {
 			break;
 		}
 		theBullet.transform.parent = null;
-		theBullet.GetComponent<Rigidbody>().AddRelativeForce(new Vector3(-bulletVelocity, 0, 0));
+		theBullet.GetComponent<Rigidbody>().AddRelativeForce(new Vector3(-bulletVelocity, CalculateSpread(), CalculateSpread()));
 		AudioSource.PlayClipAtPoint(bulletSound, this.transform.position);
 
 		//
 	}
-
+	float CalculateSpread(){
+		System.Random rnd = new System.Random();
+		return rnd.Next(-1000, 1000) / ARStats.spreadModifier;
+	}
 	void FindShootingPoint(){
 		FindWeapon();
 		shootingPoint = theWeapon;
