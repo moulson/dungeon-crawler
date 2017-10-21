@@ -27,6 +27,11 @@ public class ARStats : MonoBehaviour {
 		for(int i = 0; i < totalChildren; i++){
 			attachment = transform.GetChild(0).GetChild(i);
 			attachment.gameObject.layer = 9;
+			if(attachment.childCount > 0){
+				for(int j = 0; j < attachment.childCount; j++){
+					attachment.GetChild(j).gameObject.layer = 9;
+				}
+			}
 			theName = attachment.name.Replace("(Clone)", "");
 			//find attachment in list
 			theAttachment = ARAttachments.attachmentList.Find(x => x.Name == theName);
