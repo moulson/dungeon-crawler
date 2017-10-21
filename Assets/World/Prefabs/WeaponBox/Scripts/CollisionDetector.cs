@@ -11,7 +11,8 @@ public class CollisionDetector : MonoBehaviour {
 	private bool isShowing = true;
 	private bool hasSpawnedUI = false;
 	private bool hasDestroyedUI = false;
-	void OnTriggerEnter(){
+
+	void ActivateUI(){
 		if(!hasSpawnedUI){
 			//Create the ui object, but only ever once.
 			uiPrompt = Instantiate(uiPrompt);
@@ -22,6 +23,11 @@ public class CollisionDetector : MonoBehaviour {
 			inRange = true;
 			uiPrompt.SetActive(isShowing);
 		}
+	}
+
+	void OnTriggerEnter(Collider hit){
+		if(hit.gameObject.tag == "Activator")
+			ActivateUI();
 	}
 	void OnTriggerExit(){
 		//when not looking/being near the object, make sure the UI isn't showing

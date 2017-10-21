@@ -13,16 +13,20 @@ public class PickupWeapon : MonoBehaviour {
 	public GameObject assaultRifleSlot;
 
     public static string AmmoType;
-
-    void OnTriggerEnter(){
+	void ActivateUI(){
 		//Make sure that the weapon box has been used first
 		if(this.transform.childCount > 0){
 			if(needsInstantiating)
 				uiPrompt = Instantiate(uiPrompt);
 				needsInstantiating = false;
 			canBePicked = true;
-			uiPrompt.SetActive(true);
-		}
+			if(!hasBeenPicked)
+				uiPrompt.SetActive(true);
+			}
+	}
+    void OnTriggerEnter(Collider hit){
+		if(hit.gameObject.tag == "Activator")
+			ActivateUI();	
 	}
 	void OnTriggerExit(){
 		canBePicked = false;
@@ -33,7 +37,7 @@ public class PickupWeapon : MonoBehaviour {
 
 	void Update(){
 		if(needsInstantiating && this.transform.childCount > 0){
-			OnTriggerEnter();
+			ActivateUI();
 		}
 		if(Input.GetKeyDown(KeyCode.E) && canBePicked){
 			AddToInventory();
