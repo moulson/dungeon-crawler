@@ -40,7 +40,7 @@ public class ARAttachments : MonoBehaviour {
 			Name = "DebugFireMode",
 			DamageModifier = 0.0f,
 			SpreadModifier = 0f,
-			FireRateModifier = 2.0f,
+			FireRateModifier = 0.3f,
 			AmmoCount = 0};
 		attachmentList.Add(DebugFireMode);
 		
@@ -67,7 +67,7 @@ public class ARAttachments : MonoBehaviour {
 			Name = "barrel001",
 			DamageModifier = 0.1f,
 			SpreadModifier = 0.5f,
-			FireRateModifier = 1.0f,
+			FireRateModifier = 0.2f,
 			AmmoCount = 0};
 		attachmentList.Add(barrel001);
 
@@ -82,9 +82,9 @@ public class ARAttachments : MonoBehaviour {
 		attachmentList.Add(fivefivetwo);
 		Attachment optic002 = new Attachment(){
 			Name = "optic002",
-			DamageModifier = 0.0f,
+			DamageModifier = 1.0f,
 			SpreadModifier = 4.0f,
-			FireRateModifier = -0.2f,
+			FireRateModifier = -0.6f,
 			AmmoCount = 0};
 		attachmentList.Add(optic002);
 	}

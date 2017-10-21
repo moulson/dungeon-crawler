@@ -24,7 +24,7 @@ public class CalculateProjectile : MonoBehaviour {
 			autoFiring = true;
 			if(!isCoroutining)
 				//TODO: Use calculated firerate as the delay modifier
-				StartCoroutine(AutoFire(0.5f));
+				StartCoroutine(AutoFire(CalculateFireRate()));
 		}
 		if(Input.GetButtonUp("Fire1")){
 			autoFiring = false;
@@ -69,6 +69,10 @@ public class CalculateProjectile : MonoBehaviour {
 	float CalculateSpread(){
 		System.Random rnd = new System.Random();
 		return rnd.Next(-1000, 1000) / ARStats.spreadModifier;
+	}
+	float CalculateFireRate(){
+		float defaultRate = 1f;
+		return defaultRate - ARStats.fireRateModifier;
 	}
 	void FindShootingPoint(){
 		FindWeapon();
