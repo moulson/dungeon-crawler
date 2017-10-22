@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Attachment{
 	public string Name;
-	public float DamageModifier;
-	public float SpreadModifier;
-	public float FireRateModifier;
+	public float DamageModifier; //Higher means more damage
+	public float SpreadModifier; //Smaller means more accurate
+	public float FireRateModifier; //Higher means faster
 	public int AmmoCount;
 }
 
@@ -21,14 +21,14 @@ public class ARAttachments : MonoBehaviour {
 		Attachment stock001 = new Attachment(){
 			Name = "stock001",
 			DamageModifier = 0.0f,
-			SpreadModifier = 0.5f,
+			SpreadModifier = -0.1f,
 			FireRateModifier = 0.0f,
 			AmmoCount = 0};
 		attachmentList.Add(stock001);
 		Attachment stock002 = new Attachment(){
 			Name = "stock002",
 			DamageModifier = 0.0f,
-			SpreadModifier = 1f,
+			SpreadModifier = -0.5f,
 			FireRateModifier = 0.0f,
 			AmmoCount = 0};
 		attachmentList.Add(stock002);
@@ -37,7 +37,7 @@ public class ARAttachments : MonoBehaviour {
 		Attachment grip001 = new Attachment(){
 			Name = "grip001",
 			DamageModifier = 0.0f,
-			SpreadModifier = 1.0f,
+			SpreadModifier = -1.0f,
 			FireRateModifier = 0.0f,
 			AmmoCount = 0};
 		attachmentList.Add(grip001);
@@ -82,15 +82,15 @@ public class ARAttachments : MonoBehaviour {
 		//Initialize optics
 		Attachment fivefivetwo = new Attachment(){
 			Name = "552",
-			DamageModifier = 0.0f,
-			SpreadModifier = 1.0f,
-			FireRateModifier = 0.2f,
-			AmmoCount = 0};
+			DamageModifier = 0.6f,
+			SpreadModifier = 4.0f,
+			FireRateModifier = 0.3f,
+			AmmoCount = 20};
 		attachmentList.Add(fivefivetwo);
 		Attachment optic002 = new Attachment(){
 			Name = "optic002",
 			DamageModifier = 1.0f,
-			SpreadModifier = 4.0f,
+			SpreadModifier = 1.0f,
 			FireRateModifier = -0.6f,
 			AmmoCount = 0};
 		attachmentList.Add(optic002);

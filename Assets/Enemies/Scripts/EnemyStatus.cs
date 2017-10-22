@@ -19,10 +19,7 @@ public class EnemyStatus : MonoBehaviour {
 	}
 
 	void CalculateAndDropLoot(){
-		Debug.Log("Enemy Killed, dropping loot");
-		Debug.Log(DropList.ListOfDrops[0].Entity);
 		loot = Instantiate(DropList.ListOfDrops[0].Entity, transform.position, transform.rotation);
-		Debug.Log("Moving loot to enemy body");
 		loot.transform.parent = null;
 		loot.transform.position = new Vector3(0, 1.5f, 0);
 	}

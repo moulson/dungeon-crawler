@@ -88,6 +88,7 @@ public class GenerateRandomAR : MonoBehaviour {
 		}
 		catch{
 			//Failsafe in case of oob
+			Debug.Log("Error genning weapon");
 			return randInt.Next(min, max - 1);
 		}
 	}
@@ -134,16 +135,29 @@ public class GenerateRandomAR : MonoBehaviour {
 		barrel = Instantiate(barrel, baseWeapon.transform);
 		optic = Instantiate(optic, baseWeapon.transform);
 		string ammoType = ammo.name.Replace("(Clone)", "");
-		//Don't instantiate the ammo type, Don't need a visual for it. yet.
-		stock.transform.position = new Vector3(stock.transform.position.x, stock.transform.position.y - 0.01f, stock.transform.position.z - 0.3f);
-		grip.transform.position = new Vector3(grip.transform.position.x, grip.transform.position.y - 0.1f, grip.transform.position.z + 0.1f);
-		fireMode.transform.position = new Vector3(fireMode.transform.position.x, fireMode.transform.position.y - 0.1f, fireMode.transform.position.z -0.2f);
-		fuelCell.transform.position = new Vector3(fuelCell.transform.position.x, fuelCell.transform.position.y - 0.17f, fuelCell.transform.position.z - 0.2f);
-		underBarrel.transform.position = new Vector3(underBarrel.transform.position.x, underBarrel.transform.position.y - 0.14f, underBarrel.transform.position.z + 0.3f);
-		//This is the main part of the gun, fit things around the barrel
+		Transform stockSlot, gripSlot, fireModeSlot, fuelCellSlot, underBarrelSlot, opticSlot;
 		barrel.transform.position = new Vector3(barrel.transform.position.x - 0.05f, barrel.transform.position.y, barrel.transform.position.z + 0.7f);
+		//Get locations of the barrel 'sockets'
+		Transform b = barrel.transform;
+		stockSlot = GetSlotTransform("stock", b);
+		gripSlot = GetSlotTransform("grip", b);
+		fireModeSlot = GetSlotTransform("fire_mode", b);
+		fuelCellSlot = GetSlotTransform("fuel_cell", b);
+		underBarrelSlot = GetSlotTransform("underbarrel", b);
+		opticSlot = GetSlotTransform("optic", b);
+
+		stock.transform.position = stockSlot.position;
+		grip.transform.position = gripSlot.position;
+		fireMode.transform.position =  fireModeSlot.position;
+		fuelCell.transform.position = fuelCellSlot.position;
+		underBarrel.transform.position = underBarrelSlot.position;
+		//This is the main part of the gun, fit things around the barrel
 		optic.transform.position = new Vector3(optic.transform.position.x, optic.transform.position.y + 0.07f, optic.transform.position.z);
 
 		baseWeapon.SendMessage("SetAmmoType", ammoType);
+	}
+
+	Transform GetSlotTransform(string s, Transform b){
+		return b.Find(s + "_slot").transform;
 	}
 }

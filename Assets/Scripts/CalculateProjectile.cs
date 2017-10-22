@@ -16,6 +16,7 @@ public class CalculateProjectile : MonoBehaviour {
 	private Transform theWeapon;
 	private Transform shootingPoint;
 	private bool isCoroutining = false;
+	private System.Random randint = new System.Random();
 
 	void Update () {
 		if(!shootingPointFound){
@@ -63,11 +64,12 @@ public class CalculateProjectile : MonoBehaviour {
 				break;
 			}
 			theBullet.transform.parent = null;
-			theBullet.GetComponent<Rigidbody>().AddRelativeForce(new Vector3(-bulletVelocity, CalculateSpread(), CalculateSpread()));
+			//theBullet.GetComponent<Rigidbody>().AddRelativeForce(new Vector3(-bulletVelocity, CalculateSpread(), CalculateSpread()));
+			theBullet.GetComponent<Rigidbody>().AddRelativeForce(new Vector3(-bulletVelocity, 0, 0));
 			//Once the bullet has fired, update the ammo count
 			ammoUI.SendMessage("UpdateAmmoCount", -1);
 			AudioSource.PlayClipAtPoint(bulletSound, this.transform.position);
-
+			ApplyRecoil();
 			//
 		}
 	}
@@ -89,5 +91,20 @@ public class CalculateProjectile : MonoBehaviour {
 
 	void FindWeapon(){
 		theWeapon = this.transform.Find("WeaponCreateLocation");
+	}
+
+	void ApplyRecoil(){
+		float stabilityValue = ARStats.spreadModifier;
+		//Find the camera
+		GameObject theCamera = GameObject.Find("ar_slot");
+		//Apply recoil
+		//Always up
+		theCamera.transform.Rotate(Vector3.left * ((40 * stabilityValue) * Time.deltaTime));
+		//Left or right
+		if(randint.Next(0,1000) < 500)
+			theCamera.transform.Rotate(Vector3.up * ((40 * stabilityValue) * Time.deltaTime));
+		else
+			theCamera.transform.Rotate(Vector3.down * ((40 * stabilityValue) * Time.deltaTime));
+		
 	}
 }
