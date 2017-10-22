@@ -86,10 +86,7 @@ public class CalculateProjectile : MonoBehaviour {
 	}
 	void FindShootingPoint(){
 		FindWeapon();
-		Debug.Log("here.");
-		Debug.Log(theWeapon);
 		shootingPoint = theWeapon.transform.GetChild(5).Find("bullet_start");
-		Debug.Log(shootingPoint);
 	}
 
 	void FindWeapon(){

@@ -7,7 +7,6 @@ public class CalculateAmmo : MonoBehaviour {
 	public static int CurrentAmmo = 0;
 	// Update is called once per frame
 	public void UpdateAmmoCount(int value){
-		Debug.Log("Chagning ammo by: " + value);
 		CurrentAmmo += value;
 		GetComponent<UnityEngine.UI.Text>().text = "Ammo: " + CurrentAmmo.ToString();
 		if(CurrentAmmo == 0){
