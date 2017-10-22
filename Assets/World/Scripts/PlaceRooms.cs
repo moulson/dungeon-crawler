@@ -13,7 +13,7 @@ public class PlaceRooms : MonoBehaviour {
         List<Vector3> InUseCoords = new List<Vector3>();
         bool canPosX = true, canPosZ = true, canNegZ = true, canNegX = true;
         bool isDupe;
-        Vector3 coords = new Vector3(0,0,0), posX, posZ, negX, negZ, tempPos;
+        Vector3 coords = new Vector3(0,0,0), posX, posZ, negX, negZ;
         GameObject currentRoom;
         //Generate an instance of Random which we will use to select room coordinates
         System.Random rnd = new System.Random();
