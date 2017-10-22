@@ -21,14 +21,14 @@ public class ARAttachments : MonoBehaviour {
 		Attachment stock001 = new Attachment(){
 			Name = "stock001",
 			DamageModifier = 0.0f,
-			SpreadModifier = -0.1f,
+			SpreadModifier = -10.0f,
 			FireRateModifier = 0.0f,
 			AmmoCount = 0};
 		attachmentList.Add(stock001);
 		Attachment stock002 = new Attachment(){
 			Name = "stock002",
 			DamageModifier = 0.0f,
-			SpreadModifier = -0.5f,
+			SpreadModifier = -20.0f,
 			FireRateModifier = 0.0f,
 			AmmoCount = 0};
 		attachmentList.Add(stock002);
@@ -37,7 +37,7 @@ public class ARAttachments : MonoBehaviour {
 		Attachment grip001 = new Attachment(){
 			Name = "grip001",
 			DamageModifier = 0.0f,
-			SpreadModifier = -1.0f,
+			SpreadModifier = -10.0f,
 			FireRateModifier = 0.0f,
 			AmmoCount = 0};
 		attachmentList.Add(grip001);
@@ -55,7 +55,7 @@ public class ARAttachments : MonoBehaviour {
 		Attachment magazine_asval = new Attachment(){
 			Name = "magazine_asval",
 			DamageModifier = 0.0f,
-			SpreadModifier = -0.2f,
+			SpreadModifier = 10.0f,
 			FireRateModifier = 0.0f,
 			AmmoCount = 30};
 		attachmentList.Add(magazine_asval);
@@ -64,7 +64,7 @@ public class ARAttachments : MonoBehaviour {
 		Attachment underbarrel001 = new Attachment(){
 			Name = "underbarrel001",
 			DamageModifier = 0.0f,
-			SpreadModifier = -0.4f,
+			SpreadModifier = 60f,
 			FireRateModifier = 0.0f,
 			AmmoCount = 0};
 		attachmentList.Add(underbarrel001);
@@ -73,7 +73,7 @@ public class ARAttachments : MonoBehaviour {
 		Attachment barrel001 = new Attachment(){
 			Name = "barrel001",
 			DamageModifier = 0.1f,
-			SpreadModifier = 0.5f,
+			SpreadModifier = 50f,
 			FireRateModifier = 0.2f,
 			AmmoCount = 0};
 		attachmentList.Add(barrel001);
@@ -83,14 +83,14 @@ public class ARAttachments : MonoBehaviour {
 		Attachment fivefivetwo = new Attachment(){
 			Name = "552",
 			DamageModifier = 0.6f,
-			SpreadModifier = 4.0f,
+			SpreadModifier = 100f,
 			FireRateModifier = 0.3f,
 			AmmoCount = 20};
 		attachmentList.Add(fivefivetwo);
 		Attachment optic002 = new Attachment(){
 			Name = "optic002",
 			DamageModifier = 1.0f,
-			SpreadModifier = 1.0f,
+			SpreadModifier = 10f,
 			FireRateModifier = -0.6f,
 			AmmoCount = 0};
 		attachmentList.Add(optic002);

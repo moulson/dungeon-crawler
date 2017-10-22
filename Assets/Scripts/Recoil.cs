@@ -6,10 +6,10 @@ public class Recoil : MonoBehaviour {
 
 	private Transform from;
     private Transform to;
-    private float speed = 2.5f;
-
+    private float speed = 4f;
+	public string objectToFind;
 	void Update () {
-		to = GameObject.Find("FirstPersonCharacter").transform;
+		to = GameObject.Find(objectToFind).transform;
 		//make sure the object affected by recoil keeps trying to recover
         transform.rotation = Quaternion.Lerp(transform.rotation, to.rotation, Time.deltaTime * speed);
 	}

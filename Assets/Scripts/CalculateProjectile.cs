@@ -19,9 +19,7 @@ public class CalculateProjectile : MonoBehaviour {
 	private System.Random randint = new System.Random();
 
 	void Update () {
-		if(!shootingPointFound){
-			FindShootingPoint();
-		}
+		
 		if(Input.GetButtonDown("Fire1")){
 			autoFiring = true;
 			if(!isCoroutining)
@@ -35,6 +33,9 @@ public class CalculateProjectile : MonoBehaviour {
 
 	IEnumerator AutoFire(float time)
  {
+	 if(!shootingPointFound){
+			FindShootingPoint();
+		}
 	 while(autoFiring){
 		 isCoroutining = true;
 	 	FireSingle();
@@ -47,7 +48,6 @@ public class CalculateProjectile : MonoBehaviour {
 		GameObject theEffect;
 		if(CalculateAmmo.CurrentAmmo > 0){ //Make sure we have ammo before trying to shoot
 			theBullet = Instantiate(theProjectile, shootingPoint);
-			
 			theBullet.transform.position = shootingPoint.position;
 			switch(PickupWeapon.AmmoType){
 				case "ToxicAmmo":
@@ -86,25 +86,30 @@ public class CalculateProjectile : MonoBehaviour {
 	}
 	void FindShootingPoint(){
 		FindWeapon();
-		shootingPoint = theWeapon;
+		Debug.Log("here.");
+		Debug.Log(theWeapon);
+		shootingPoint = theWeapon.transform.GetChild(5).Find("bullet_start");
+		Debug.Log(shootingPoint);
 	}
 
 	void FindWeapon(){
-		theWeapon = this.transform.Find("WeaponCreateLocation");
+		theWeapon = transform.Find("WeaponCreateLocation");
 	}
 
 	void ApplyRecoil(){
 		float stabilityValue = ARStats.spreadModifier;
 		//Find the camera
-		GameObject theCamera = GameObject.Find("ar_slot");
-		//Apply recoil
+		GameObject theGun = GameObject.Find("ar_slot");
+
+		int theRandom = randint.Next(0,1000);
+
 		//Always up
-		theCamera.transform.Rotate(Vector3.left * ((40 * stabilityValue) * Time.deltaTime));
+		theGun.transform.Rotate(Vector3.left * ((stabilityValue) * Time.deltaTime));
 		//Left or right
-		if(randint.Next(0,1000) < 500)
-			theCamera.transform.Rotate(Vector3.up * ((40 * stabilityValue) * Time.deltaTime));
+		if(theRandom < 500)
+			theGun.transform.Rotate(Vector3.up * ((stabilityValue) * Time.deltaTime));
 		else
-			theCamera.transform.Rotate(Vector3.down * ((40 * stabilityValue) * Time.deltaTime));
+			theGun.transform.Rotate(Vector3.down * ((stabilityValue) * Time.deltaTime));
 		
 	}
 }
