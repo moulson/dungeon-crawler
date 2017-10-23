@@ -18,9 +18,8 @@ public class DestroyBullet : MonoBehaviour {
 		thisShot = Instantiate(hitEffect, pos, rot);
         Destroy(gameObject);
 		Destroy(thisShot, 2.0f);
-		try{
+		if(collision.collider.transform.tag == "Enemy"){
 			collision.collider.gameObject.SendMessage("ApplyDamage", ARStats.damageModifier);
 		}
-		catch{}
     }
 }

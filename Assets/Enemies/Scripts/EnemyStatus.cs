@@ -25,6 +25,9 @@ public class EnemyStatus : MonoBehaviour {
 	}
 
 	void KillSelf(){
+		//Tell controller that it's dead
+		transform.parent.SendMessage("UpdateEnemies", "death");
+		//Destroy
 		Destroy(gameObject);
 	}
 }

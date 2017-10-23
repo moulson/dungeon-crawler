@@ -89,14 +89,14 @@ public class DoorControl : MonoBehaviour {
 	void OnTriggerExit(Collider col){
 		if(col.transform.tag == "Player Pickup Trigger"){
 			isInRoom = false;
-			RoomCleared();
 		}
 	}
 
 	void RoomCleared(){
 		//Open doors
+		Debug.Log("Cleared the room!");
 		foreach(Transform door in ownedDoors){
-			//Debug.Log(door.Find("TheDoor").GetComponent<Animation>().Play("DoorOpen"));
+			door.Find("TheDoor").Translate(new Vector3(0, -18, 0));
 		}
 	}
 	void RoomEntered(){
@@ -110,6 +110,7 @@ public class DoorControl : MonoBehaviour {
 		}
 		foreach(Transform door in ownedDoors){
 			Debug.Log(door.Find("TheDoor"));
+			door.Find("TheDoor").Translate(new Vector3(0, 18, 0));
 			//door.Find("TheDoor").GetComponent<Animation>().Play("DoorClose");
 		}
 	}
