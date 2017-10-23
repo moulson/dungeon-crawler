@@ -21,7 +21,7 @@ public class EnemyStatus : MonoBehaviour {
 	void CalculateAndDropLoot(){
 		loot = Instantiate(DropList.ListOfDrops[0].Entity, transform.position, transform.rotation);
 		loot.transform.parent = null;
-		loot.transform.position = new Vector3(0, 1.5f, 0);
+		loot.transform.position = transform.position;
 	}
 
 	void KillSelf(){
