@@ -8,6 +8,7 @@ public class DoorControl : MonoBehaviour {
 	public bool negXHit = false, negZHit = false, posXHit = false, posZHit = false;
 	private bool waitingToAnimate = false;
 	private Collider fakePlayer;
+	private bool hasBeenCleared = false;
 	void FixedUpdate(){
 		//Make the door controller take ownership of the doors it should control
 		if(!posXHit){
@@ -87,20 +88,32 @@ public class DoorControl : MonoBehaviour {
 		foreach(Transform door in ownedDoors){
 			door.Find("TheDoor").Translate(new Vector3(0, -18, 0));
 		}
+		for(int i = 0; i < transform.parent.childCount; i++){
+			if(transform.parent.GetChild(i).tag == "MiniMapData"){
+				transform.parent.GetChild(i).GetComponent<Renderer>().material.color = new Color(0,255,0);
+			}
+		}
+		hasBeenCleared = true;
 	}
 	void RoomEntered(){
 		//Close doors
 		waitingToAnimate = false;
-		for(int i = 0; i < transform.childCount; i++){
-			
-			if(transform.GetChild(i).name.Contains("DoorPrefab")){
-				ownedDoors.Add(transform.GetChild(i));
+		if(!hasBeenCleared){
+			for(int i = 0; i < transform.childCount; i++){
+				if(transform.GetChild(i).name.Contains("DoorPrefab")){
+					ownedDoors.Add(transform.GetChild(i));
+				}
 			}
-		}
-		foreach(Transform door in ownedDoors){
-			Debug.Log(door.Find("TheDoor"));
-			door.Find("TheDoor").Translate(new Vector3(0, 18, 0));
-			//door.Find("TheDoor").GetComponent<Animation>().Play("DoorClose");
+			foreach(Transform door in ownedDoors){
+				Debug.Log(door.Find("TheDoor"));
+				door.Find("TheDoor").Translate(new Vector3(0, 18, 0));
+				//door.Find("TheDoor").GetComponent<Animation>().Play("DoorClose");
+			}
+			for(int i = 0; i < transform.parent.childCount; i++){
+				if(transform.parent.GetChild(i).tag == "MiniMapData"){
+					transform.parent.GetChild(i).GetComponent<Renderer>().material.color = new Color(255,0,0);
+				}
+			}
 		}
 	}
 }
