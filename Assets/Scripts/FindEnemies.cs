@@ -6,7 +6,7 @@ public class FindEnemies : MonoBehaviour {
 
 	public float radius;
 	private bool hasEnemies = false;
-	public static int totalEnemies = 0;
+	private int totalEnemies = 0;
 
 	void FixedUpdate () {
 		if(!hasEnemies){
@@ -24,6 +24,7 @@ public class FindEnemies : MonoBehaviour {
 	void UpdateEnemies(string s){
 		if(s == "death"){
 			totalEnemies--;
+			Debug.Log("Enemy killed. " + totalEnemies + " enemies left.");
 		}
 		if(totalEnemies == 0){
 			transform.parent.Find("DoorControl").SendMessage("RoomCleared");

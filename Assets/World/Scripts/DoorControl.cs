@@ -5,14 +5,11 @@ using UnityEngine;
 public class DoorControl : MonoBehaviour {
 	private RaycastHit hit;
 	private List<Transform> ownedDoors = new List<Transform>();
-	public bool negXHit = false, negZHit = false, posXHit = false, posZHit = false, isInRoom = false;
+	public bool negXHit = false, negZHit = false, posXHit = false, posZHit = false;
 	private bool waitingToAnimate = false;
 	private Collider fakePlayer;
 	void FixedUpdate(){
 		//Make the door controller take ownership of the doors it should control
-		if(Input.GetKeyDown(KeyCode.Alpha0)){
-			RoomCleared();
-		}
 		if(!posXHit){
 			if(Physics.Raycast(transform.position, new Vector3(90,0,0),out hit ,100)){
 				posXHit = true;
@@ -74,7 +71,6 @@ public class DoorControl : MonoBehaviour {
 	void OnTriggerEnter(Collider col){
 		if(col.transform.tag == "Player Pickup Trigger"){
 			fakePlayer = col;
-			isInRoom = true;
 			if(posXHit && posZHit && negXHit && negZHit){
 				RoomEntered();
 			}
@@ -85,13 +81,6 @@ public class DoorControl : MonoBehaviour {
 
 		}
 	}
-
-	void OnTriggerExit(Collider col){
-		if(col.transform.tag == "Player Pickup Trigger"){
-			isInRoom = false;
-		}
-	}
-
 	void RoomCleared(){
 		//Open doors
 		Debug.Log("Cleared the room!");
