@@ -114,6 +114,9 @@ public class DoorControl : MonoBehaviour {
 					transform.parent.GetChild(i).GetComponent<Renderer>().material.color = new Color(255,0,0);
 				}
 			}
+			for( int i = 0; i < transform.parent.Find("EnemyControl").childCount; i++){
+				transform.parent.Find("EnemyControl").GetChild(i).SendMessage("ActivateAI");
+			}
 		}
 	}
 }

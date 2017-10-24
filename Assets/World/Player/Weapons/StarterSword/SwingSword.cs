@@ -15,7 +15,6 @@ public class SwingSword : MonoBehaviour {
 	}
 	public Vector3 rayCastLoc;
 	public void SwordHit(string s){
-		RaycastHit rch;
 		Vector3 fwd = transform.TransformDirection (rayCastLoc);
 		if (Physics.Raycast (transform.position, fwd, 10)) {
 			Debug.Log ("Hit a thing!");
