@@ -30,4 +30,10 @@ public class FindEnemies : MonoBehaviour {
 			transform.parent.Find("DoorControl").SendMessage("RoomCleared");
 		}
 	}
+
+	void OnTriggerExit(Collider col){
+		if(col.tag == "Enemy"){
+			Debug.Log("Enemy OOB");
+		}
+	}
 }

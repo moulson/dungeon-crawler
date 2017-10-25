@@ -8,6 +8,7 @@ public class DumbAI : MonoBehaviour {
 	public int maxDist = 10;
 	private bool isActive = false;
 	public float speed = 10f;
+	private Vector3 inverseDir;
 	private Vector3 boundary1, boundary2, boundary3, boundary4;
 
 	void Update(){
@@ -19,12 +20,13 @@ public class DumbAI : MonoBehaviour {
 			}
 			else if(DistanceToPlayer(transform.position) < maxDist - 5){
 				//make sure it's not trying to go oob...
-				transform.Translate(transform.position - thePlayer.transform.position * speed * Time.deltaTime);
+				inverseDir = new Vector3(thePlayer.transform.position.x - transform.position.x, 0, thePlayer.transform.position.z - transform.position.z);
+				transform.Translate((-1 * (inverseDir).normalized) * speed * Time.deltaTime);
 			}
 			else{
-				Debug.Log("This is a good spot");
 				//Move around a bit...
 			}
+			DoAttack();
 		}
 	}
 
@@ -45,5 +47,13 @@ public class DumbAI : MonoBehaviour {
 		boundary2 = new Vector3(pos.x - 5, pos.y, pos.z);
 		boundary3 = new Vector3(pos.x + 5, pos.y, pos.z -5);
 		boundary4 = new Vector3(pos.x + 5, pos.y, pos.z + 5);  
+	}
+	void OutOfBounds(){
+		//move back into the playable zone
+
+		//If player is on the right, go left and vice versa
+	}
+	void DoAttack(){
+
 	}
 }
