@@ -10,7 +10,6 @@ public class PickupWeapon : MonoBehaviour {
 	private bool canBePicked = false;
 	private bool hasBeenPicked = false;
 	private bool needsInstantiating = true;
-	public GameObject assaultRifleSlot;
 
     public static string AmmoType;
 	void ActivateUI(){
@@ -45,9 +44,11 @@ public class PickupWeapon : MonoBehaviour {
 	}
 
 	void AddToInventory(){
-		this.transform.parent = assaultRifleSlot.transform;
-		this.transform.position = assaultRifleSlot.transform.position;
-		this.transform.rotation = assaultRifleSlot.transform.rotation;
+        GameObject wepSlot = GameObject.FindGameObjectWithTag("ar_slot");
+        Debug.Log(wepSlot);
+        transform.parent = wepSlot.transform;
+		transform.position = wepSlot.transform.position;
+		transform.rotation = wepSlot.transform.rotation;
 		hasBeenPicked = true;
 		Destroy(uiPrompt);
 	}
