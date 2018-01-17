@@ -34,6 +34,7 @@ public class FindEnemies : MonoBehaviour {
 	void OnTriggerExit(Collider col){
 		if(col.tag == "Enemy"){
 			Debug.Log("Enemy OOB");
+			col.SendMessage("OutOfBounds");
 		}
 	}
 }

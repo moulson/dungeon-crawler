@@ -8,8 +8,7 @@ public class DumbAI : MonoBehaviour {
 	public int maxDist = 10;
 	private bool isActive = false;
 	public float speed = 10f;
-	private Vector3 inverseDir;
-	private Vector3 boundary1, boundary2, boundary3, boundary4;
+	private Vector3 inverseDir, relativePos;
 
 	void Update(){
 		if(isActive){
@@ -34,26 +33,21 @@ public class DumbAI : MonoBehaviour {
 		//Find the player
 		thePlayer = GameObject.FindGameObjectWithTag("Player");
 		isActive = true;
-		GetBoundaries();
 	}
 
 	float DistanceToPlayer(Vector3 pos){
 		return Vector3.Distance(thePlayer.transform.position, pos);
 	}
 
-	void GetBoundaries(){
-		Vector3 pos = transform.parent.position;
-		boundary1 = new Vector3(pos.x - 5, pos.y, pos.z - 5);
-		boundary2 = new Vector3(pos.x - 5, pos.y, pos.z);
-		boundary3 = new Vector3(pos.x + 5, pos.y, pos.z -5);
-		boundary4 = new Vector3(pos.x + 5, pos.y, pos.z + 5);  
-	}
 	void OutOfBounds(){
-		//move back into the playable zone
-
-		//If player is on the right, go left and vice versa
+		relativePos = new Vector3(thePlayer.transform.position.x - transform.position.x, 0, thePlayer.transform.position.z - transform.position.z);
+		transform.Translate( -10 * (relativePos.normalized) * speed * Time.deltaTime);
 	}
 	void DoAttack(){
 
+	}
+
+	void Djikstra(){
+		
 	}
 }
